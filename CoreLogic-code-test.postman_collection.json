@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "98647d0f-fdb3-4967-8d8b-b7eb72419a8d",
+		"name": "CoreLogic-code-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19373609"
+	},
+	"item": [
+		{
+			"name": "/problemList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/problemList",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"problemList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/multiples",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jamie\",\n    \"answer\": 466\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/multiples",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"multiples"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/fibonacci",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Jamie\",\n    \"answer\": 6857\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{local}}/fibonacci",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"fibonacci"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/scoreboard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local}}/scoreboard",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"scoreboard"
+					],
+					"query": [
+						{
+							"key": "questionId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://localhost:3000/api"
+		}
+	]
+}

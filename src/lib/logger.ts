@@ -1,19 +1,12 @@
-import winston from "winston";
+import type { Logger } from 'winston';
+import winston from 'winston';
 
-export const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.json(),
-  defaultMeta: { service: "corelogic-code-test" },
-  transports: [
-    new winston.transports.File({ filename: "error.log", level: "error" }),
-    new winston.transports.File({ filename: "combined.log" }),
-  ],
+export const logger: Logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.json(),
+    winston.format.colorize({ all: true })
+  ),
+  defaultMeta: { service: 'corelogic-code-test' },
+  transports: [new winston.transports.Console()]
 });
-
-if (process.env.NODE_ENV !== "production") {
-  logger.add(
-    new winston.transports.Console({
-      format: winston.format.simple(),
-    })
-  );
-}

@@ -1,4 +1,6 @@
-export interface IAnswersResponse {
-  success: boolean;
-  isCorrect?: boolean;
+export interface IScoreboardItem {
+  name: string;
+  earliestCorrectSubmission?: Date;
+  numberOfAttempts: number;
+  questionId: number;
 }

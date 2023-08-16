@@ -1,23 +1,15 @@
-import { NextApiHandler } from "next";
-import dbConnect from "@lib/dbConnect";
+import type { NextApiHandler } from 'next';
+import dbConnect from '@lib/dbConnect';
+import type { IQuestion } from '@src/models/problems';
+import { problemsList } from '@src/models/problems';
 
-interface IProblems {
-  name: string;
-  url: string;
-}
-
-const problemsList: IProblems[] = [
-  { name: "Multiples of 3 or 5", url: "/multiples" },
-  { name: "Even Fibonacci Numbers", url: "/fibonacci" },
-];
-
-const handler: NextApiHandler<IProblems[]> = async (req, res) => {
+const handler: NextApiHandler<IQuestion[]> = async (req, res) => {
   await dbConnect();
 
   const { method } = req;
 
-  if (method !== "GET") {
-    res.status(405).end("Method not allowed, only GET allowed");
+  if (method !== 'GET') {
+    res.status(405).end('Method not allowed, only GET allowed');
     return;
   }
 

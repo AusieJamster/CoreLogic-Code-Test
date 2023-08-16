@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const cached: {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
 } = {
   conn: null,
-  promise: null,
+  promise: null
 };
 
 async function dbConnect() {
   const MONGODB_URI =
-    process.env.MONGO_URL || "mongodb://localhost:27017/next-docker";
+    process.env.MONGO_URL || 'mongodb://localhost:27017/next-docker';
 
   if (cached.conn) return cached.conn;
 

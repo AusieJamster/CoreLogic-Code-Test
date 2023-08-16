@@ -1,8 +1,8 @@
 import type { NextApiHandler } from 'next';
 import dbConnect from '@lib/dbConnect';
 import { HTTPMethods, questionRequestSchema } from '@src/models/endpoints';
-import { sumNaturalNumsBelowX } from '@src/lib/mathFunctions';
-import Record from '@src/models/record.schema';
+import { getLargestPrimeNumberFrom } from '@src/lib/mathFunctions';
+import RecordSchema from '@src/models/record.schema';
 import { formatName } from '@src/lib/formatting';
 import { logger } from '@src/lib/logger';
 import { QuestionTitles, problemsList } from '@src/models/problems';
@@ -25,7 +25,7 @@ const handler: NextApiHandler<boolean> = async (req, res) => {
     return;
   }
 
-  const correctAnswer = sumNaturalNumsBelowX(1000);
+  const correctAnswer = getLargestPrimeNumberFrom(600851475143);
   const isCorrect = safeBody.data.answer === correctAnswer;
 
   logger.info(
@@ -33,11 +33,11 @@ const handler: NextApiHandler<boolean> = async (req, res) => {
   );
 
   try {
-    await Record.create({
+    await RecordSchema.create({
       name: formatName(safeBody.data.name.toLowerCase()),
       isCorrect: isCorrect,
       questionId: problemsList.find(
-        (prob) => prob.name === QuestionTitles.MULTIPLES
+        (prob) => prob.name === QuestionTitles.FIBONACCI
       )?.id
     });
     res.status(201).json(isCorrect);
