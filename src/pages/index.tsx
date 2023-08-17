@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { NextPage } from 'next';
-import { Stack, Typography } from '@mui/material';
+import { Grid, Stack, Typography } from '@mui/material';
 import ProblemSelection from '@src/components/ProblemSelection';
 import type { IQuestion } from '@src/models/problems';
 import { problemsList } from '@src/models/problems';
@@ -84,19 +84,30 @@ const HomePage: NextPage<HomePageProps> = ({}) => {
         width="100vw"
         gap={5}
         justifyContent="center"
+        marginY={5}
       >
-        <Stack direction="row" alignItems="space-around">
-          <ProblemSelection
-            defaultQuestion={problemsList[0]}
-            selectedQuestion={selectedQuestion}
-            onAction={onAction}
-          />
-          <CustomButton
-            onClick={() => onAction({ type: ActionType.OPEN_SCOREBOARD })}
-            label={'Score Board'}
-          />
-        </Stack>
-        <Typography variant="h1" textAlign="center">
+        <Grid
+          container
+          direction="row"
+          spacing={2}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item xs={12} sm={6}>
+            <ProblemSelection
+              defaultQuestion={problemsList[0]}
+              selectedQuestion={selectedQuestion}
+              onAction={onAction}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6} justifyContent="center" display="flex">
+            <CustomButton
+              onClick={() => onAction({ type: ActionType.OPEN_SCOREBOARD })}
+              label={'Score Board'}
+            />
+          </Grid>
+        </Grid>
+        <Typography variant="h3" textAlign="center">
           {selectedQuestion.name}
         </Typography>
         <Stack gap={1} alignItems="center">
